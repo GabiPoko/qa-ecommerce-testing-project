@@ -1,0 +1,281 @@
+{
+  "info": {
+    "_postman_id": "bf4fe4c2-990a-43b5-b94b-05a9125dd542",
+    "name": "QA E-commerce API Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47057064"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "TC_API_001 GET - All Products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "\r",
+                  "pm.response.to.have.status(200);\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Response is an array\", function () {\r",
+                  "\r",
+                  "var jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.expect(jsonData).to.be.an(\"array\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Response time is less than 2000ms\", function () {\r",
+                  "\r",
+                  "pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://fakestoreapi.com/products",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TE_API_003 Validate Product Fields",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "TC_API_004 GET Single Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test (\"Status code is 200\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "var jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Product has an ID\", function(){\r",
+                  "\r",
+                  "    pm.expect(jsonData).to.have.property(\"id\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Product has a title\", function(){\r",
+                  "    pm.expect(jsonData).to.have.property(\"title\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Product has a price\", function(){\r",
+                  "    pm.expect(jsonData).to.have.property(\"price\");\r",
+                  "    });\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://fakestoreapi.com/products/{1}",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "products",
+                "{1}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC_API_008 GET Products Performance",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "TC_API_006 POST Add Product to Cart",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test (\"Status code is 201 or 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf ([201, 200]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response contains id\", function(){\r",
+                  "    let jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData).to.have.property(\"id\");\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response contains products array\", function(){\r",
+                  "    let jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.products).to.be.an(\"array\");;\r",
+                  "});\r",
+                  "pm.test(\"Response time is less than 2000ms\", function(){\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userId\": 1,\r\n    \"date\" : \"2026-03-04\",\r\n    \"products\" : [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 1\r\n        }\r\n    ]  \r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://fakestoreapi.com/carts",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "carts"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Negative Tests",
+      "item": [
+        {
+          "name": "TC_API_002 GET Invalid Endpoint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test (\"Response time is less than 2000ms\", function(){\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://fakestoreapi.com/productsS",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "productsS"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC_API_005 GET Invalid Product ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test (\"Status code indicates invalid resource\", function (){\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([404]); \r",
+                  "});\r",
+                  "\r",
+                  "pm.test (\"Response time is less than 2000ms\", function(){\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000); \r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://fakestoreapi.com/products/11111",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "products",
+                "11111"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
