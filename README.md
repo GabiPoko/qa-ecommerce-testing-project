@@ -1,5 +1,60 @@
 # qa-ecommerce-testing-project
 Manual and API testing project for an e-commerce application including test cases, execution reports, bug tracking in Jira and API testing using Postman.
+---------------------------
+
+# E-commerce QA Testing Project
+
+## Project Overview
+
+This project demonstrates a complete QA testing process for a sample E-commerce application.  
+The objective was to simulate the work of a QA engineer by creating a full testing workflow including test planning, test case design, execution, bug reporting, and API testing.
+
+The application tested includes key modules such as Login, Cart, Checkout, and API endpoints.
+
+---
+
+# Testing Scope
+
+The following modules were tested:
+
+- Login functionality
+- Cart behavior
+- Checkout process
+- Product API endpoints
+
+Testing included both **positive and negative scenarios** to validate application behavior under different conditions.
+
+---
+
+# Testing Types Performed
+
+- Manual Testing
+- Functional Testing
+- Negative Testing
+- API Testing
+- Bug Reporting
+
+---
+
+# Tools Used
+
+- Postman (API Testing)
+- Jira (Bug Tracking)
+- Google Sheets / Excel (Test Cases & Execution Reports)
+- GitHub (Project Documentation & Version Control)
+
+---
+
+# Project Structure
+QA-Ecommerce-Testing-Project
+│
+├── Test-Plan
+├── Test-Cases
+├── Test-Execution-Report
+├── Bug-Reports
+├── Evidence
+├── API-Testing
+└── Test-Summary-Report
 
 ---------------------------
 
